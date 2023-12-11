@@ -1,9 +1,6 @@
 const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../helpers");
-const {
-  addSchema,
-  changeFavoriteSchema,
-} = require("../schemas/schemaContacts");
+const { addSchema, changeFavoriteSchema } = require("../schemas/schemas");
 
 const contactSchema = new Schema({
   name: {

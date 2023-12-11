@@ -1,23 +1,33 @@
-const express = require("express");
-const router = express.Router();
+const { Schema, model } = require("mongoose");
+const { handleMongooseError } = require("../helpers");
+const { joiRegisterSchema, joiLoginSchema } = require("../schemas/schemas");
 
-const ctrl = require("../controllers/auth");
-const { validateBody, authenticate } = require("../middlewares");
-const { ctrlWrapper } = require("../helpers");
-const { registerSchema, loginSchema } = require("../schemas/schemaUsers");
+const userSchema = new Schema({
+  password: {
+    type: String,
+    minlength: 6,
+    required: [true, "Set password for user"],
+  },
+  email: {
+    type: String,
+    required: [true, "Email is required"],
+    unique: true,
+  },
+  subscription: {
+    type: String,
+    enum: ["starter", "pro", "business"],
+    default: "starter",
+  },
+  token: String,
+});
 
-router.post(
-  "/register",
-  validateBody(registerSchema),
-  ctrlWrapper(ctrl.register)
-);
+userSchema.post("save", handleMongooseError);
 
-router.post("/login", validateBody(loginSchema), ctrlWrapper(ctrl.login));
+const schemasUsers = {
+  joiRegisterSchema,
+  joiLoginSchema,
+};
 
-router.get("/current", authenticate, ctrlWrapper(ctrl.current));
+const User = model("user", userSchema);
 
-router.post("/logout", authenticate, ctrlWrapper(ctrl.logout));
-
-router.patch("/update", authenticate, ctrlWrapper(ctrl.updateSubscription));
-
-module.exports = router;
+module.exports = { User, schemasUsers };

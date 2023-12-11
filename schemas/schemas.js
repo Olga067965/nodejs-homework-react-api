@@ -1,6 +1,17 @@
 const Joi = require("joi");
 
-const registerSchema = Joi.object({
+const addSchema = Joi.object({
+  name: Joi.string().required(),
+  email: Joi.string().required(),
+  phone: Joi.string().required(),
+  favorite: Joi.boolean(),
+});
+
+const changeFavoriteSchema = Joi.object({
+  favorite: Joi.boolean().required(),
+});
+
+const joiRegisterSchema = Joi.object({
   password: Joi.string().alphanum().min(6).required(),
   email: Joi.string()
     .email({
@@ -10,7 +21,7 @@ const registerSchema = Joi.object({
     .required(),
 });
 
-const loginSchema = Joi.object({
+const joiLoginSchema = Joi.object({
   password: Joi.string().alphanum().min(6).required(),
   email: Joi.string()
     .email({
@@ -21,6 +32,8 @@ const loginSchema = Joi.object({
 });
 
 module.exports = {
-  registerSchema,
-  loginSchema,
+  addSchema,
+  changeFavoriteSchema,
+  joiLoginSchema,
+  joiRegisterSchema,
 };
