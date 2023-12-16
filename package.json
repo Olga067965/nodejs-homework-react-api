@@ -33,5 +33,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "5.2.0",
     "nodemon": "2.0.15"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/Olga067965/nodejs-homework-react-api.git",
+  "author": "Olga067965 <olgasavelieva5@gmail.com>",
+  "license": "MIT"
 }
