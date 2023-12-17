@@ -31,9 +31,14 @@ const joiLoginSchema = Joi.object({
     .required(),
 });
 
+const updateAvatarSchema = Joi.object({
+  avatarURL: Joi.string().required(),
+});
+
 module.exports = {
   addSchema,
   changeFavoriteSchema,
   joiLoginSchema,
   joiRegisterSchema,
+  updateAvatarSchema,
 };
