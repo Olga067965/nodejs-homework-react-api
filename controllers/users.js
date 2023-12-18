@@ -109,7 +109,7 @@ const updateAvatar = async (req, res) => {
   const resultUpload = path.join(avatarDir, originalname);
 
   await Jimp.read(tempUpload)
-    .then((lenna) => lenna.resize(250, 250).write(resultUpload))
+    .then((image) => image.resize(250, 250).write(resultUpload))
     .catch((e) => console.log(e));
 
   await fs.unlink(tempUpload);
