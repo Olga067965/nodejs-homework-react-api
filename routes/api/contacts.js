@@ -22,3 +22,4 @@ router.patch(
 router.delete("/:contactId", ctrl.deleteContact);
 
 module.exports = router;
+
