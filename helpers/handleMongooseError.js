@@ -1,16 +1,7 @@
-const handleMongooseError = (error, _data, next) => {
+const handleMongooseError = (error, data, next) => {
   const { name, code } = error;
-  const customError = new Error();
-
-  if (name === "MongoServerError" && code === 11000) {
-    customError.status = 409;
-    customError.message = "Duplicate key error";
-  } else {
-    customError.status = 400;
-    customError.message = "Bad request";
-  }
-
-  next(customError);
+  error.status = name === "MongoServerError" && code === 11000 ? 409 : 400;
+  next();
 };
 
 module.exports = handleMongooseError;
