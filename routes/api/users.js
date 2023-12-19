@@ -23,4 +23,14 @@ router.patch(
   upload.single("avatar"),
   ctrl.updateAvatar
 );
+<<<<<<< Updated upstream
+=======
+
+router.get("/verify/:verificationToken", ctrl.verify);
+router.post(
+  "/verify",
+  validateBody(schemas.verifyEmailSchema),
+  ctrl.resendVerifyEmail
+);
+>>>>>>> Stashed changes
 module.exports = router;
