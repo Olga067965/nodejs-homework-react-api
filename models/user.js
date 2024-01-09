@@ -3,8 +3,6 @@ const Joi = require("joi");
 
 const { handleMongooseError } = require("../helpers");
 
-// const emailRegexp =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
 const userSchema = new Schema(
   {
     password: {
@@ -23,17 +21,6 @@ const userSchema = new Schema(
     },
     avatarURL: String,
     token: String,
-<<<<<<< Updated upstream
-=======
-    verify: {
-      type: Boolean,
-      default: false,
-    },
-    verificationToken: {
-      type: String,
-      required: [true, "Verify token is required"],
-    },
->>>>>>> Stashed changes
   },
   { versionKey: false, timestamps: true }
 );
